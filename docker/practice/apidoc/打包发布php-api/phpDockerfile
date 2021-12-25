@@ -1,0 +1,4 @@
+FROM php:7.3-fpm-alpine
+MAINTAINER pf94514203<390227869@qq.com>
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN docker-php-ext-install mysqli pdo pdo_mysql

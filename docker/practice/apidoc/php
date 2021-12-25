@@ -1,0 +1,40 @@
+docker run -d --rm --name php php:7.3-fpm-alpine
+docker exec -it php sh
+sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+docker-php-ext-install mysqli pdo pdo_mysql
+exit
+docker cp php:/usr/local/etc/php /volume1/docker/apidoc/php
+docker cp php:/usr/local/etc/php-fpm.conf /volume1/docker/apidoc/php
+docker cp php:/usr/local/etc/php-fpm.d /volume1/docker/apidoc/php
+docker stop php
+
+
+docker run -itd --name php -p 9000:9000 \
+-v /volume1/docker/apidoc/www:/var/www/html \
+-v /volume1/docker/apidoc/php/php:/usr/local/etc/php \
+-v /volume1/docker/apidoc/php/php-fpm.conf:/usr/local/etc/php-fpm.conf  \
+-v /volume1/docker/apidoc/php/php-fpm.d:/usr/local/etc/php-fpm.d \
+php:7.3-fpm-alpine
+
+docker exec -it php sh
+sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+docker-php-ext-install mysqli pdo pdo_mysql
+exit
+
+
+//it is ok for me!
+//实践使用我发布的镜像：其实也是可行的
+mkdir /volume1/docker/apidoc/php
+docker run -d --rm --name php pf94514203/php-api:0.2
+
+docker cp php:/usr/local/etc/php /volume1/docker/apidoc/php
+docker cp php:/usr/local/etc/php-fpm.conf /volume1/docker/apidoc/php
+docker cp php:/usr/local/etc/php-fpm.d /volume1/docker/apidoc/php
+docker stop php
+
+docker run -itd --name php -p 9000:9000 \
+-v /volume1/docker/apidoc/www:/var/www/html \
+-v /volume1/docker/apidoc/php/php:/usr/local/etc/php \
+-v /volume1/docker/apidoc/php/php-fpm.conf:/usr/local/etc/php-fpm.conf  \
+-v /volume1/docker/apidoc/php/php-fpm.d:/usr/local/etc/php-fpm.d \
+pf94514203/php-api:0.2

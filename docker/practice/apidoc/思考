@@ -1,0 +1,8 @@
+//想将对应的文件给丢到那些文件中去
+运行php -m 有pdo_mysql 文件才行
+
+//错误原因
+1：ip地址不对 要用正确的ip地址才行，其实可以使用link也许可以
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 容器名称
+ip地址
+2：nginx对应的文件路径

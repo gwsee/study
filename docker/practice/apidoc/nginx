@@ -1,0 +1,18 @@
+docker run -d --rm --name nginx nginx:alpine
+然后拷贝文件
+docker cp nginx:/etc/nginx/ /volume1/docker/apidoc
+docker cp nginx:/usr/share/nginx /volume1/docker/apidoc/www
+
+docker stop nginx
+
+docker run -itd --name nginx -p 80:80 \
+-v /volume1/docker/apidoc/www:/usr/share/nginx \
+-v /volume1/docker/apidoc/nginx/nginx.conf:/etc/nginx/nginx.conf \
+-v /volume1/docker/apidoc/nginx/conf.d:/etc/nginx/conf.d \
+-v /volume1/docker/apidoc/nginx/logs:/var/log/nginx \
+-e TZ="Asia/Shanghai" \
+nginx:alpine
+
+
+docker run -itd --name nginxTest -p 8080:80 \
+nginx:alpine

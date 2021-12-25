@@ -1,0 +1,35 @@
+//1：传送到服务器
+D:\study\demo.gwsee.com\gwsee.com.linux\docker\20211224日测试发布镜像>scp ./php/phpDockerfile root@106.14.68.202:/data/docker/phpDockerfile
+
+
+//2：构建镜像
+[root@izuf6eqphn5tg750m2vsqfz docker]# docker build -f phpDockerfile -t pf94514203/php-api:0.1 .
+
+
+//3：登录docker
+[root@izuf6eqphn5tg750m2vsqfz docker]# docker login -u pf94514203
+Password:
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+
+//4：发布镜像
+[root@izuf6eqphn5tg750m2vsqfz docker]# docker push pf94514203/php-api:0.1
+The push refers to repository [docker.io/pf94514203/php-api]
+fef2bdebe68c: Layer already exists
+6fbd49fe5066: Layer already exists
+a2c90ce24f9f: Layer already exists
+f65d16eba330: Layer already exists
+603f3bdedb8c: Layer already exists
+2798c6bf7e60: Layer already exists
+2925f06555a9: Layer already exists
+10e40f98a8b1: Layer already exists
+dcd0ffda58b8: Layer already exists
+c29d319c8043: Layer already exists
+8a76a297762e: Layer already exists
+8d3ac3489996: Layer already exists
+0.1: digest: sha256:2eeda276fbcd520286d461422885ff1237059078c3e8232082502ef9050d17f3 size: 2828
+[root@izuf6eqphn5tg750m2vsqfz docker]#

@@ -1,0 +1,84 @@
+
+yum install -y unzip zip
+
+
+文件放在
+
+/volume1/docker/apidoc/www/api
+chmod -R 777 /volume1/docker/apidoc/www/api
+
+//然后写配置文件
+将下面的改成 最后的哪个
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
+
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+    #}
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
+}
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' php##放在配置的时候
+server {
+    listen       80 ;
+    listen       [::]:80 ;
+    index index.html index.htm index.php default.html default.htm default.php;
+    root   /usr/share/nginx/api;
+    # Load configuration files for the default server block.
+    include /etc/nginx/default.d/*.conf;
+    location / {
+            if (!-e $request_filename)
+            {
+                rewrite ^/(.*)$ /index.php?s=$1 last;
+                break;
+            }
+    }
+    location ~ .php$ {
+        fastcgi_pass 172.17.0.5:9000;##docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql
+        fastcgi_index index.php;
+        fastcgi_param  SCRIPT_FILENAME  /var/www/html/api$fastcgi_script_name;
+        include fastcgi_params;
+    }
+    error_page 404 /404.html;
+        location = /40x.html {
+    }
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}
