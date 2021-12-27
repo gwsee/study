@@ -65,3 +65,11 @@ services:
 
 [root@iZuf6eqphn5tg750m2vsqfZ composetest]# docker-compose up
 
+
+
+2:https://docs.docker.com/compose/samples-for-compose/
+
+有多个式子可以练习
+
+3：大部分的例子 在这里
+https://github.com/docker/awesome-compose
