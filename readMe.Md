@@ -10,6 +10,7 @@ pengfeng
 
 ###file
     file is using to store installation files and related steps
+    all file will upload to my baidu cloud files  (good37oa)
 
 ###issue
     issue is using to store problems and solutions
