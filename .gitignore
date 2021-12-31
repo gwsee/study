@@ -3,3 +3,4 @@ runtime/
 .vscode
 *.ini
 *.zip
+**/node_modules
