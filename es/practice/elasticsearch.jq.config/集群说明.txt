@@ -7,3 +7,8 @@ windows环境中 是复制多个安装包目录 然后修改elasticsearch.yml文
 给主节点或者子节点加数据后 其他节点也能够看到对应的数据
 
 
+linux 参考
+https://www.cnblogs.com/sanduzxcvbnm/p/11433741.html
+
+
+
