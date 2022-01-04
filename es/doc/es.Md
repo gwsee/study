@@ -43,6 +43,17 @@
 ![img_3.png](img_3.png)
 
 
+整个启动流程
+    
+    ES：
+![img_32.png](img_32.png)
+    插件：
+![img_30.png](img_30.png)
+
+    kibana：
+![img_31.png](img_31.png)
+
+
 默认集群名称是
 
 ![img_5.png](img_5.png)
