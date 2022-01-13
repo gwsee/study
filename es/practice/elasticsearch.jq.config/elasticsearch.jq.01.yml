@@ -29,7 +29,7 @@ node.name: node-1
 # 主节点
 node.master: true
 # 数据节点
-node.data: true 
+node.data: true # 主节点可以不是数据节点
 # ----------------------------------- Paths ------------------------------------
 #
 # Path to directory where to store the data (separate multiple locations by comma):
