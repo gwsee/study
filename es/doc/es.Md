@@ -157,3 +157,7 @@ ik分词器增加自己的配置（解决我们需要的名词）
 golang的 api文档
 
     https://www.elastic.co/guide/en/elasticsearch/client/index.html
+
+ES查看机器情况（windows)
+
+    http://127.0.0.1:9201/_cat/nodes?v
